@@ -14,7 +14,7 @@ class TestCaseTest (TestCase):
 
     def testSetUp(self):
         self.test.run()
-        assert(self.test.wasSetUp)
+        assert(self.test.log == "setUp")
 
 
 #  it extends TestCase class. So it has 'run()' method. When we call run below, it invokes, method name provided in constructor
