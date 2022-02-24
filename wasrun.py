@@ -1,12 +1,15 @@
 # first we initialize WasRun object, invoking it's superclass constructor (which sets up name of method to be invoked).
-# then we invoke 'run()' method 
-# notice! wasRun attribute belongs only to subclass WasRun
+# then we invoke 'run()' method, which invokes <name> method passed in constructor
 
 class TestCase:
     def __init__(self, name):
         self.name = name
+        
+    def setUp(self):
+        pass
 
     def run(self):
+        self.setUp()
         # dynamical invocation of "testmethod"
         exec ("self." + self.name + "()")  
 
@@ -22,3 +25,6 @@ class WasRun(TestCase):
 
     def testMethod(self):
         self.wasRun= 1
+
+    def setUp(self):
+        self.wasSetUp= 1
