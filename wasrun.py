@@ -8,7 +8,6 @@ class TestCase:
 
     def run(self):
         # dynamical invocation of "testmethod"
-        print ("d")
         exec ("self." + self.name + "()")  
 
 
