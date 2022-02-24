@@ -8,7 +8,11 @@ class TestCase:
     def setUp(self):
         pass
 
+    def tearDown(selr):
+        pass
+
     def run(self):
         self.setUp()
         # dynamical invocation of "testmethod"
-        exec ("self." + self.name + "()")  
+        exec ("self." + self.name + "()")
+        self.tearDown()
