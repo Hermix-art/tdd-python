@@ -1,6 +1,6 @@
 from wasrun import TestCase, WasRun
 
-class TestCaseTest ():
+class TestCaseTest (TestCase):
     def testRunning(self):
         test = WasRun("testMethod")
         #meaning of wasRun attribute is 'None'
@@ -10,7 +10,6 @@ class TestCaseTest ():
         #meaning of wasRun attribute is '1'
         assert(test.wasRun)
 
-#invocation of 'testRunning()
-vark = TestCaseTest()
-vark.testRunning()
-# TestCaseTest("testRunning").run()
+# it extends TestCase class. So it has 'run()' method. When we call run below, it invokes, method name provided in constructor
+# in case of WasRun we provide 'testMethod()', so it invokes it. currently, we provide 'testRunning()'
+TestCaseTest("testRunning").run()
