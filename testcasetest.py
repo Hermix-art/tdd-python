@@ -1,20 +1,20 @@
 from wasrun import TestCase, WasRun
 
 class TestCaseTest (TestCase):
-    def testRunning(self):
-        test = WasRun("testMethod")
+    def setUp(self):
+        #global instance for current TestCaseTest object
+        self.test = WasRun("testMethod")
 
+    def testRunning(self):
         #invocation, which changes 'None' to '1'
-        test.run()
+        self.test.run()
 
         #meaning of wasRun attribute is '1'
-        assert(test.wasRun)
-
+        assert(self.test.wasRun)
 
     def testSetUp(self):
-        test = WasRun("testMethod")
-        test.run()
-        assert(test.wasSetUp)
+        self.test.run()
+        assert(self.test.wasSetUp)
 
 
 #  it extends TestCase class. So it has 'run()' method. When we call run below, it invokes, method name provided in constructor
