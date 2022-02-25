@@ -1,8 +1,12 @@
+import re
 from suite import TestSuite
 from testresult import TestResult
 from wasrun import TestCase, WasRun
 
 class TestCaseTest (TestCase):
+
+    def setUp(self):
+        self.result = TestResult()
 
     #Collecting parameter pattern (we have general TestSuite for all test cases, which we change, and at the end check its' summary)
     def testSuite(self):
@@ -10,31 +14,29 @@ class TestCaseTest (TestCase):
         suite.add(WasRun("testMethod"))
         suite.add(WasRun("testBrokenMethod"))
 
-        result = TestResult()
-        suite.run(result)
-        assert("2 run, 1 failed" == result.summary())
+        suite.run(self.result)
+        assert("2 run, 1 failed" == self.result.summary())
 
     def testTemplateMethod(self):
         test = WasRun("testMethod")
-        test.run()
+        test.run(self.result)
         assert(test.log == "setUp testMethod tearDown") # exception here is caught in TestCaseTest.run() in exception handling part, and exception counter is increased
     
     def testResult(self):
         test = WasRun("testMethod")
-        result = test.run()
-        assert("1 run, 0 failed" == result.summary()) # result deliveres result here, and if assertion exception appears, it's caught in TestCaseTest.run()
+        test.run(self.result)
+        assert("1 run, 0 failed" == self.result.summary()) # result deliveres result here, and if assertion exception appears, it's caught in TestCaseTest.run()
         # in general there is 1 level of assertion string above, which logs "runs and fails" in 'testResult()',  in 'run()' method
 
     def testFailedResult(self):
         test = WasRun("testBrokenMethod")
-        result = test.run()
-        assert("1 run, 1 failed" == result.summary())
+        test.run(self.result)
+        assert("1 run, 1 failed" == self.result.summary())
 
     def testFailedResultFormatting(self):
-        result = TestResult()
-        result.testStarted()
-        result.testFailed()
-        assert("1 run, 1 failed" == result.summary())
+        self.result.testStarted()
+        self.result.testFailed()
+        assert("1 run, 1 failed" == self.result.summary())
 
 
 #  it extends TestCase class. So it has 'run()' and 'setUp()' methods.
