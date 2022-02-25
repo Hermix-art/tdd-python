@@ -1,6 +1,5 @@
 # when we invoke 'run()' method, it calls 'setUp()' and  invokes <name> method passed in constructor (dynamically)
 
-import re
 from tempfile import gettempdir
 from unittest import result
 from testresult import TestResult
