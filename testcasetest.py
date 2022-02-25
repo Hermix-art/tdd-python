@@ -29,10 +29,9 @@ class TestCaseTest (TestCase):
 #  1) create TestCase subclass, providing method name to invoke; 
 #  2) call 'run()' and it will invoke default'setUp()' method, method, passed via constructor, and tearDown method (default)
 
-TestCaseTest("testTemplateMethod").run()
-TestCaseTest("testResult").run()
-TestCaseTest("testFailedResultFormatting").run()
-
-#TestCaseTest("testFailedResult").run()
+print (TestCaseTest("testTemplateMethod").run().summary())
+print (TestCaseTest("testResult").run().summary())
+print (TestCaseTest("testFailedResultFormatting").run().summary())
+print (TestCaseTest("testFailedResult").run().summary())
 
 

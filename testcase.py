@@ -23,7 +23,6 @@ class TestCase:
         self.setUp()
 
         try:
-            # dynamical invocation of "testmethod"
             method = getattr(self, self.name)
             method()
         except:
