@@ -1,5 +1,7 @@
 # when we invoke 'run()' method, it calls 'setUp()' and  invokes <name> method passed in constructor (dynamically)
 
+import re
+from unittest import result
 from testresult import TestResult
 
 
@@ -15,6 +17,9 @@ class TestCase:
         pass
 
     def run(self):
+        result = TestResult()
+        result.testStarted()
+
         self.setUp()
 
         # dynamical invocation of "testmethod"
@@ -22,5 +27,5 @@ class TestCase:
         method()
 
         self.tearDown()
-        return TestResult()
+        return result
 

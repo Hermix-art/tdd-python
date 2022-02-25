@@ -9,7 +9,8 @@ class TestCaseTest (TestCase):
     
     def testResult(self):
         test = WasRun("testMethod")
-        result= test.run()
+        result = test.run()
+        print (result.summary())
         assert("1 run, 0 failed" == result.summary())
 
 
@@ -18,3 +19,4 @@ class TestCaseTest (TestCase):
 #  1) create TestCase subclass, providing method name to invoke; 
 #  2) call 'run()' and it will invoke default'setUp()' method, method, passed via constructor, and tearDown method (default)
 TestCaseTest("testTemplateMethod").run()
+TestCaseTest("testResult").run()
