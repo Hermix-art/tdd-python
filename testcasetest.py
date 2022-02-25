@@ -1,4 +1,3 @@
-import re
 from suite import TestSuite
 from testresult import TestResult
 from wasrun import TestCase, WasRun
