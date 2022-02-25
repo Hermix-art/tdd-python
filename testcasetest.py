@@ -1,4 +1,3 @@
-import re
 from suite import TestSuite
 from testresult import TestResult
 from wasrun import TestCase, WasRun
@@ -43,15 +42,17 @@ class TestCaseTest (TestCase):
 #  When we call run below, it invokes those methods. 'run()' invokes the method with the name, passed via constructor (testTemplateMethod)
 #  1) create TestCase subclass, providing method name to invoke; 
 #  2) call 'run()' and it will invoke default'setUp()' method, method, passed via constructor, and tearDown method (default)
-#  3) as TestCaseTest also extends TestCas, exception handling and TestResuld returning is also implemented in its' 'run()' method
+#  3) as TestCaseTest also extends TestCase, exception handling and TestResuld returning is also implemented in its' 'run()' method
+#  4) testSuite() method checks working on lower level of abstraction, whereas suite with TestCaseTest object, works on level above
 
-
-suite= TestSuite()
+suite = TestSuite()
+suite.add(TestCaseTest("testSuite"))
 suite.add(TestCaseTest("testTemplateMethod"))
 suite.add(TestCaseTest("testResult"))
-suite.add(TestCaseTest("testFailedResultFormatting"))
 suite.add(TestCaseTest("testFailedResult"))
-suite.add(TestCaseTest("testSuite"))
+suite.add(TestCaseTest("testFailedResultFormatting"))
+
+# separate result is created for TestCaseTest objects
 result= TestResult()
 suite.run(result)
 print (result.summary())
