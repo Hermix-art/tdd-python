@@ -10,8 +10,12 @@ class TestCaseTest (TestCase):
     def testResult(self):
         test = WasRun("testMethod")
         result = test.run()
-        print (result.summary())
         assert("1 run, 0 failed" == result.summary())
+
+    def testFailedResult(self):
+        test = WasRun("testBrokenMethod")
+        result = test.run()
+        assert("1 run, 1 failed" == result.summary)
 
 
 #  it extends TestCase class. So it has 'run()' and 'setUp()' methods.
@@ -20,3 +24,4 @@ class TestCaseTest (TestCase):
 #  2) call 'run()' and it will invoke default'setUp()' method, method, passed via constructor, and tearDown method (default)
 TestCaseTest("testTemplateMethod").run()
 TestCaseTest("testResult").run()
+TestCaseTest("testFailedResult").run()
