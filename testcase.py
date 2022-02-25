@@ -15,10 +15,8 @@ class TestCase:
     def tearDown(selr):
         pass
 
-    def run(self):
-        result = TestResult()
+    def run(self, result):
         result.testStarted()
-
         self.setUp()
 
         try:
@@ -29,5 +27,4 @@ class TestCase:
 
 
         self.tearDown()
-        return result
 
